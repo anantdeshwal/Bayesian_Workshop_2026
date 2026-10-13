@@ -90,11 +90,11 @@
      var ZOOM_LINK = "https://us02web.zoom.us/j/1234567890?pwd=abc";
      Leave it empty ("") to show "Link coming soon".
      ===================================================================== -->
-<script>var ZOOM_LINK = "https://Bradley.zoom.us/j/99128624630";</script>
+<script>var ZOOM_LINK = "";</script>
 
 <header>
   <div class="wrap">
-    <p class="eyebrow">SCCS 2026 · Workshop</p>
+    <p class="eyebrow">AMNH SCCS 2026 Bayesian Workshop</p>
     <h1>Bayesian Workshop</h1>
     <p>An introduction to Bayesian statistics for ecologists: probability distributions, Bayes' theorem,
        directed acyclic graphs, priors, and fitting models in R with JAGS.</p>
@@ -125,7 +125,7 @@
       <div class="session">
         <div class="num">1</div>
         <div><h3>Probability distributions</h3>
-          <p>Normal, Poisson, binomial and gamma: which distribution fits which kind of ecological data.</p></div>
+          <p>Which distribution fits your ecological data?</p></div>
         <a class="dl" href="1_Probability_Distributions.pdf">Slides</a>
       </div>
       <div class="session">
@@ -136,8 +136,8 @@
       </div>
       <div class="session">
         <div class="num">3</div>
-        <div><h3>Activity: from a DAG to the joint probability</h3>
-          <p>Draw a directed acyclic graph for an ecological question and turn it into a model equation.</p></div>
+        <div><h3>Activity: from a DAG to JAGS</h3>
+          <p>Draw a directed acyclic graph for an ecological question, turn it into a model equation, and finally into a JAGS model.</p></div>
         <a class="dl" href="3_Activity_DAG_to_Joint_Probability.pdf">Slides</a>
       </div>
       <div class="session">
@@ -202,27 +202,27 @@
     <div class="files" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr))">
       <div class="file">
         <span class="tag">R script</span>
-        <code>Answers_R_code.R</code>
+        <code>PlantGrowth_Rmodel.R</code>
         <p>Reads the data, sets initial values, runs JAGS and checks convergence with MCMCvis.</p>
-        <a class="dl" href="Answers_R_code.R" download>Download</a>
+        <a class="dl" href="PlantGrowth_Rmodel.R" download>Download</a>
       </div>
       <div class="file">
         <span class="tag">JAGS model</span>
-        <code>Answers_JAGS_model.R</code>
+        <code>PlantGrowth_JAGS.R</code>
         <p>The model file: priors and likelihood.</p>
-        <a class="dl" href="Answers_JAGS_model.R" download>Download</a>
+        <a class="dl" href="PlantGrowth_JAGS.R" download>Download</a>
       </div>
       <div class="file">
         <span class="tag">Data</span>
-        <code>Answers_Simulated_Data.csv</code>
+        <code>plantgrowth_simdata.csv</code>
         <p>The simulated data used in the answer.</p>
-        <a class="dl" href="Answers_Simulated_Data.csv" download>Download</a>
+        <a class="dl" href="plantgrowth_simdata.csv" download>Download</a>
       </div>
       <div class="file">
         <span class="tag">Simulation</span>
-        <code>Answers_Simulate_Data.R</code>
+        <code>PlantGrowth_DataSim.R</code>
         <p>R code that generates the simulated data from known true values.</p>
-        <a class="dl" href="Answers_Simulate_Data.R" download>Download</a>
+        <a class="dl" href="PlantGrowth_DataSim.R" download>Download</a>
       </div>
     </div>
   </section>
