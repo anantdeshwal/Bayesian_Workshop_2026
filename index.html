@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bayesian Workshop: SCCS 2026</title>
+<meta name="description" content="Slides, R and JAGS code, and data for the Bayesian Workshop at SCCS 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Domine:wght@500;700&family=Nunito+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F7F5EE; --card:#FFFDF8; --ink:#25302A; --muted:#5A645E; --line:#DDD8C8;
+    --forest:#1F3A2E; --accent:#A9541A; --accent-soft:#F6E7D6; --leaf:#2E7D5B;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#141B17; --card:#1C2520; --ink:#E8EFE9; --muted:#A7B5AC; --line:#2F3B34;
+           --forest:#0F1C16; --accent:#F0A35E; --accent-soft:#3A2A1C; --leaf:#7FC29B; }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Nunito Sans',Arial,sans-serif;font-size:17px;line-height:1.6}
+  a{color:var(--leaf)}
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px}
+
+  header{background:var(--forest);color:#F4F1E8;padding:64px 0 56px}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#F0A35E}
+  h1{font-family:'Domine',Georgia,serif;font-size:clamp(32px,6vw,52px);line-height:1.15;margin:12px 0 16px}
+  header p{color:#C3D3C8;max-width:640px}
+  .btn{display:inline-block;margin-top:24px;background:#F0A35E;color:#1F3A2E;font-weight:700;
+       padding:12px 22px;border-radius:10px;text-decoration:none}
+  .btn:hover{filter:brightness(1.07)}
+  .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+  .actions .btn{margin-top:0}
+  .btn.ghost{background:transparent;color:#F4F1E8;border:1.5px solid #F0A35E}
+
+  nav{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);z-index:5}
+  nav .wrap{display:flex;gap:22px;overflow-x:auto;padding-top:12px;padding-bottom:12px}
+  nav a{color:var(--muted);text-decoration:none;font-weight:600;white-space:nowrap}
+  nav a:hover{color:var(--ink)}
+
+  section{padding:56px 0 8px}
+  h2{font-family:'Domine',Georgia,serif;font-size:28px;margin-bottom:8px}
+  .lead{color:var(--muted);margin-bottom:24px}
+
+  .sessions{display:grid;gap:14px}
+  .session{display:grid;grid-template-columns:56px 1fr auto;gap:18px;align-items:center;
+           background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .num{font-family:'Domine',Georgia,serif;font-size:30px;font-weight:700;color:var(--accent);text-align:center}
+  .session h3{font-size:19px;margin-bottom:2px}
+  .session p{color:var(--muted);font-size:15px}
+  .dl{border:1.5px solid var(--leaf);color:var(--leaf);padding:8px 14px;border-radius:9px;
+      text-decoration:none;font-weight:700;font-size:14px;white-space:nowrap}
+  .dl:hover{background:var(--leaf);color:var(--card)}
+
+  .files{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+  .file{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:8px}
+  .tag{align-self:flex-start;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+       background:var(--accent-soft);color:var(--accent);padding:3px 9px;border-radius:6px}
+  .file code{font-family:'JetBrains Mono',monospace;font-size:14px;word-break:break-all}
+  .file p{color:var(--muted);font-size:15px;flex:1}
+  .file .dl{align-self:flex-start}
+
+  ol.steps{padding-left:22px;display:grid;gap:10px}
+  pre{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;overflow-x:auto;
+      font-family:'JetBrains Mono',monospace;font-size:14px;margin-top:8px}
+  .note{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin-top:20px;font-size:15px}
+
+  footer{margin-top:64px;padding:28px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+
+  @media (max-width:600px){
+    .session{grid-template-columns:40px 1fr;}
+    .session .dl{grid-column:2;justify-self:start}
+    .num{font-size:24px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow">SCCS 2026 · Workshop</p>
+    <h1>Bayesian Workshop</h1>
+    <p>An introduction to Bayesian statistics for ecologists: probability distributions, Bayes' theorem,
+       directed acyclic graphs, priors, and fitting models in R with JAGS.</p>
+    <div class="actions">
+      <a class="btn" href="Syllabus_Bayesian_Workshop_SCCS.pdf">Syllabus (PDF)</a>
+      <a class="btn ghost" id="zip" href="#materials">Download all materials</a>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <a href="#syllabus">Syllabus</a>
+    <a href="#materials">Code &amp; data</a>
+    <a href="#setup">Before the workshop</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="syllabus">
+    <h2>Syllabus</h2>
+    <p class="lead">Five sessions, from probability basics to running a Bayesian model in R.
+      The <a href="Syllabus_Bayesian_Workshop_SCCS.pdf">full syllabus (PDF)</a> has the schedule and details.</p>
+    <div class="sessions">
+      <div class="session">
+        <div class="num">1</div>
+        <div><h3>Probability distributions</h3>
+          <p>Normal, Poisson, binomial and gamma: which distribution fits which kind of ecological data.</p></div>
+        <a class="dl" href="1_Probability_Distributions.pdf">Slides</a>
+      </div>
+      <div class="session">
+        <div class="num">2</div>
+        <div><h3>Bayes' theorem</h3>
+          <p>Conditional and total probability, the joint distribution, and how prior and likelihood make the posterior.</p></div>
+        <a class="dl" href="2_Bayes_Theorem.pdf">Slides</a>
+      </div>
+      <div class="session">
+        <div class="num">3</div>
+        <div><h3>Activity: from a DAG to the joint probability</h3>
+          <p>Draw a directed acyclic graph for an ecological question and turn it into a model equation.</p></div>
+        <a class="dl" href="3_Activity_DAG_to_Joint_Probability.pdf">Slides</a>
+      </div>
+      <div class="session">
+        <div class="num">4</div>
+        <div><h3>Priors</h3>
+          <p>Vague versus informative priors, how to choose a distribution and its width, and checking sensitivity.</p></div>
+        <a class="dl" href="4_Prior.pdf">Slides</a>
+      </div>
+      <div class="session">
+        <div class="num">5</div>
+        <div><h3>R code: fitting a model with JAGS</h3>
+          <p>Data, initial values, adaptation, burn-in, sampling, and checking convergence with MCMCvis.</p></div>
+        <a class="dl" href="5_R_Code.pdf">Slides</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="materials">
+    <h2>Code &amp; data</h2>
+    <p class="lead">Put all three files in the same folder before running the R script.</p>
+    <div class="files">
+      <div class="file">
+        <span class="tag">R script</span>
+        <code>R_code_Logistic.R</code>
+        <p>Loads the data, sets initial values, runs JAGS and summarises the results.</p>
+        <a class="dl" href="R_code_Logistic.R" download>Download</a>
+      </div>
+      <div class="file">
+        <span class="tag">JAGS model</span>
+        <code>LogisticJAGS.R</code>
+        <p>The logistic growth model: priors for r, K and sigma, and the likelihood.</p>
+        <a class="dl" href="LogisticJAGS.R" download>Download</a>
+      </div>
+      <div class="file">
+        <span class="tag">Data</span>
+        <code>LogisticSim.csv</code>
+        <p>Simulated population sizes and per-capita growth rates (50 rows).</p>
+        <a class="dl" href="LogisticSim.csv" download>Download</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup">
+    <h2>Before the workshop</h2>
+    <p class="lead">Please install everything in advance. Installing JAGS takes a few minutes.</p>
+    <ol class="steps">
+      <li>Install <a href="https://cran.r-project.org/">R</a> and <a href="https://posit.co/download/rstudio-desktop/">RStudio</a>.</li>
+      <li>Install <a href="https://sourceforge.net/projects/mcmc-jags/">JAGS</a>. This is a separate program, not an R package.</li>
+      <li>In RStudio, install the R packages:
+        <pre>install.packages(c("rjags", "MCMCvis"))</pre></li>
+      <li>Check that it works. This should print a version number with no error:
+        <pre>library(rjags)</pre></li>
+    </ol>
+    <div class="note"><b>Mac users:</b> if <code>library(rjags)</code> cannot find JAGS, restart RStudio after installing JAGS and try again.</div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">Bayesian Workshop · SCCS 2026</div>
+</footer>
+
+<script>
+  // On GitHub Pages (username.github.io/repo/), point the big button at the repository zip.
+  (function(){
+    var h = location.hostname, parts = location.pathname.split('/').filter(Boolean);
+    if (h.endsWith('.github.io') && parts.length) {
+      var user = h.replace('.github.io',''), repo = parts[0];
+      document.getElementById('zip').href =
+        'https://github.com/' + user + '/' + repo + '/archive/refs/heads/main.zip';
+    }
+  })();
+</script>
+</body>
+</html>
