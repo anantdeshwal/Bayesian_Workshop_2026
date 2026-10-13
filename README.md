@@ -17,6 +17,10 @@ Slides, R and JAGS code, and data for the Bayesian Workshop at SCCS 2026.
 | `R_code_Logistic.R` | R script that runs the model |
 | `LogisticJAGS.R` | JAGS model file |
 | `LogisticSim.csv` | Simulated data |
+| `Answers_R_code.R` | Answer: R script |
+| `Answers_JAGS_model.R` | Answer: JAGS model |
+| `Answers_Simulated_Data.csv` | Answer: simulated data |
+| `Answers_Simulate_Data.R` | Answer: code that simulates the data |
 
 ## Software
 

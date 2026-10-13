@@ -36,6 +36,7 @@
   nav .wrap{display:flex;gap:22px;overflow-x:auto;padding-top:12px;padding-bottom:12px}
   nav a{color:var(--muted);text-decoration:none;font-weight:600;white-space:nowrap}
   nav a:hover{color:var(--ink)}
+  nav a.active{color:var(--ink);border-bottom:2px solid var(--accent)}
 
   section{padding:56px 0 8px}
   h2{font-family:'Domine',Georgia,serif;font-size:28px;margin-bottom:8px}
@@ -64,6 +65,16 @@
       font-family:'JetBrains Mono',monospace;font-size:14px;margin-top:8px}
   .note{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin-top:20px;font-size:15px}
 
+  .zoom{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;
+        background:var(--card);border:1px solid var(--line);border-left:5px solid #2D8CFF;
+        border-radius:14px;padding:22px 24px}
+  .zoom h3{font-size:19px;margin-bottom:4px}
+  .zoom p{color:var(--muted);font-size:15px;max-width:560px}
+  .zbtn{display:inline-flex;align-items:center;gap:10px;background:#2D8CFF;color:#fff;font-weight:700;
+        padding:12px 20px;border-radius:10px;text-decoration:none;white-space:nowrap}
+  .zbtn:hover{filter:brightness(1.08)}
+  .zbtn.off{background:var(--line);color:var(--muted);pointer-events:none}
+
   footer{margin-top:64px;padding:28px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
 
   @media (max-width:600px){
@@ -74,6 +85,12 @@
 </style>
 </head>
 <body>
+<!-- =====================================================================
+     ZOOM LINK: paste the link between the quotes on the next line, e.g.
+     var ZOOM_LINK = "https://us02web.zoom.us/j/1234567890?pwd=abc";
+     Leave it empty ("") to show "Link coming soon".
+     ===================================================================== -->
+<script>var ZOOM_LINK = "";</script>
 
 <header>
   <div class="wrap">
@@ -91,8 +108,10 @@
 <nav>
   <div class="wrap">
     <a href="#syllabus">Syllabus</a>
+    <a href="#zoom">Join on Zoom</a>
     <a href="#materials">Code &amp; data</a>
     <a href="#setup">Before the workshop</a>
+    <a href="#answers">Answers for the Independent Activity</a>
   </div>
 </nav>
 
@@ -136,6 +155,22 @@
     </div>
   </section>
 
+  <section id="zoom">
+    <h2>Join on Zoom</h2>
+    <div class="zoom">
+      <div>
+        <h3>Optional online access</h3>
+        <p>Optional for anyone to interact with Pooja Panwar via chat.
+           <b>Please ensure that you are muted.</b></p>
+      </div>
+      <a class="zbtn off" id="zoomBtn" href="#" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M3 7a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7zm14 3.2 4-2.7v9l-4-2.7v-3.6z"/></svg>
+        <span id="zoomTxt">Link coming soon</span>
+      </a>
+    </div>
+  </section>
+
   <section id="materials">
     <h2>Code &amp; data</h2>
     <p class="lead">Put all three files in the same folder before running the R script.</p>
@@ -161,6 +196,37 @@
     </div>
   </section>
 
+  <section id="answers">
+    <h2>Answers for the Independent Activity</h2>
+    <p class="lead">Try the activity yourself first. Put all four files in the same folder before running the R script.</p>
+    <div class="files" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr))">
+      <div class="file">
+        <span class="tag">R script</span>
+        <code>Answers_R_code.R</code>
+        <p>Reads the data, sets initial values, runs JAGS and checks convergence with MCMCvis.</p>
+        <a class="dl" href="Answers_R_code.R" download>Download</a>
+      </div>
+      <div class="file">
+        <span class="tag">JAGS model</span>
+        <code>Answers_JAGS_model.R</code>
+        <p>The model file: priors and likelihood.</p>
+        <a class="dl" href="Answers_JAGS_model.R" download>Download</a>
+      </div>
+      <div class="file">
+        <span class="tag">Data</span>
+        <code>Answers_Simulated_Data.csv</code>
+        <p>The simulated data used in the answer.</p>
+        <a class="dl" href="Answers_Simulated_Data.csv" download>Download</a>
+      </div>
+      <div class="file">
+        <span class="tag">Simulation</span>
+        <code>Answers_Simulate_Data.R</code>
+        <p>R code that generates the simulated data from known true values.</p>
+        <a class="dl" href="Answers_Simulate_Data.R" download>Download</a>
+      </div>
+    </div>
+  </section>
+
   <section id="setup">
     <h2>Before the workshop</h2>
     <p class="lead">Please install everything in advance. Installing JAGS takes a few minutes.</p>
@@ -182,6 +248,12 @@
 </footer>
 
 <script>
+  // Turn on the Zoom button once a link has been pasted at the top of this file.
+  if (ZOOM_LINK && ZOOM_LINK.trim()) {
+    var zb = document.getElementById('zoomBtn');
+    zb.href = ZOOM_LINK.trim(); zb.classList.remove('off');
+    document.getElementById('zoomTxt').textContent = 'Join Zoom meeting';
+  }
   // On GitHub Pages (username.github.io/repo/), point the big button at the repository zip.
   (function(){
     var h = location.hostname, parts = location.pathname.split('/').filter(Boolean);
