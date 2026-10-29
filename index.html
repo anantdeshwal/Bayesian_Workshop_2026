@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bayesian Workshop: AMNH 2026</title>
-<meta name="description" content="Slides, R and JAGS code, and data for the Bayesian Workshop at AMNH 2026.">
+<title>AMNH 2026 Bayesian Workshop</title>
+<meta name="description" content="Slides, R and JAGS code, and data for the AMNH 2026 Bayesian Workshop.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500;700&family=Nunito+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
@@ -65,16 +65,6 @@
       font-family:'JetBrains Mono',monospace;font-size:14px;margin-top:8px}
   .note{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin-top:20px;font-size:15px}
 
-  .zoom{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;
-        background:var(--card);border:1px solid var(--line);border-left:5px solid #2D8CFF;
-        border-radius:14px;padding:22px 24px}
-  .zoom h3{font-size:19px;margin-bottom:4px}
-  .zoom p{color:var(--muted);font-size:15px;max-width:560px}
-  .zbtn{display:inline-flex;align-items:center;gap:10px;background:#2D8CFF;color:#fff;font-weight:700;
-        padding:12px 20px;border-radius:10px;text-decoration:none;white-space:nowrap}
-  .zbtn:hover{filter:brightness(1.08)}
-  .zbtn.off{background:var(--line);color:var(--muted);pointer-events:none}
-
   footer{margin-top:64px;padding:28px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
 
   @media (max-width:600px){
@@ -85,12 +75,6 @@
 </style>
 </head>
 <body>
-<!-- =====================================================================
-     ZOOM LINK: paste the link between the quotes on the next line, e.g.
-     var ZOOM_LINK = "https://us02web.zoom.us/j/1234567890?pwd=abc";
-     Leave it empty ("") to show "Link coming soon".
-     ===================================================================== -->
-<script>var ZOOM_LINK = "https://Bradley.zoom.us/j/99128624630";</script>
 
 <header>
   <div class="wrap">
@@ -108,10 +92,9 @@
 <nav>
   <div class="wrap">
     <a href="#syllabus">Syllabus</a>
-    <a href="#zoom">Join on Zoom</a>
     <a href="#materials">Code &amp; data</a>
-    <a href="#setup">Before the workshop</a>
     <a href="#answers">Answers for the Independent Activity</a>
+    <a href="#setup">Before the workshop</a>
   </div>
 </nav>
 
@@ -152,22 +135,6 @@
           <p>Data, initial values, adaptation, burn-in, sampling, and checking convergence with MCMCvis.</p></div>
         <a class="dl" href="5_R_Code.pdf">Slides</a>
       </div>
-    </div>
-  </section>
-
-  <section id="zoom">
-    <h2>Join on Zoom</h2>
-    <div class="zoom">
-      <div>
-        <h3>Optional online access</h3>
-        <p>Optional for anyone to interact with Pooja Panwar via chat.
-           <b>Please ensure that you are muted.</b></p>
-      </div>
-      <a class="zbtn off" id="zoomBtn" href="#" target="_blank" rel="noopener">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M3 7a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7zm14 3.2 4-2.7v9l-4-2.7v-3.6z"/></svg>
-        <span id="zoomTxt">Link coming soon</span>
-      </a>
     </div>
   </section>
 
@@ -244,16 +211,10 @@
 </main>
 
 <footer>
-  <div class="wrap">Bayesian Workshop · AMNH 2026</div>
+  <div class="wrap">AMNH 2026 Bayesian Workshop</div>
 </footer>
 
 <script>
-  // Turn on the Zoom button once a link has been pasted at the top of this file.
-  if (ZOOM_LINK && ZOOM_LINK.trim()) {
-    var zb = document.getElementById('zoomBtn');
-    zb.href = ZOOM_LINK.trim(); zb.classList.remove('off');
-    document.getElementById('zoomTxt').textContent = 'Join Zoom meeting';
-  }
   // On GitHub Pages (username.github.io/repo/), point the big button at the repository zip.
   (function(){
     var h = location.hostname, parts = location.pathname.split('/').filter(Boolean);

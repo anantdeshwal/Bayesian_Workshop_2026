@@ -1,8 +1,8 @@
-# Bayesian Workshop: SCCS 2026
+# AMNH 2026 Bayesian Workshop
 
-Slides, R and JAGS code, and data for the Bayesian Workshop at SCCS 2026.
+Slides, R and JAGS code, and data for the AMNH 2026 Bayesian Workshop.
 
-**Workshop website:** https://USERNAME.github.io/bayesian-workshop-sccs2026/
+**Workshop website:** https://anantdeshwal.github.io/Bayesian_Workshop_SCCS_2026/
 
 ## Contents
 
