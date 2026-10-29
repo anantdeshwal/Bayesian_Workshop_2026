@@ -8,7 +8,7 @@ Slides, R and JAGS code, and data for the AMNH 2026 Bayesian Workshop.
 
 | File | What it is |
 |---|---|
-| `Syllabus_Bayesian_Workshop_SCCS.pdf` | Workshop syllabus |
+| `Syllabus_Bayesian_Workshop.pdf` | Workshop syllabus |
 | `1_Probability_Distributions.pdf` | Session 1 slides |
 | `2_Bayes_Theorem.pdf` | Session 2 slides |
 | `3_Activity_DAG_to_Joint_Probability.pdf` | Session 3 slides |
